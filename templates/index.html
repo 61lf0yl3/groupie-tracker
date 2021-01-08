@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script  type="text/javascript" src="https://codesandbox.io/public/sse-hooks/sse-hooks.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Groupie-Tracker</title>
+    <link rel="stylesheet" href="/static/styles/index.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <main>
+      <div class="header">
+        <a href="" class="logo">Groupie-Tracker</a>
+        <div class="header-right">
+            <a href="/" class="link">Home</a>
+            <a href="/search/" class="link">Search</a>
+            <a href="https://groupietrackers.herokuapp.com/api" class="link">API</a>
+            <a href="https://github.com/01-edu/public/blob/master/subjects/groupie-tracker/groupie-tracker.en.md" class="link">About this project</a>
+        </div>
+      </div>
+      <div class="grid"> 
+      <section class="cards">
+        {{range .}}
+        <div class="card">
+          <div class="card__image-container">
+            <a href="/about/{{ .ID}}">
+                <img src="{{.Image}}" alt="Artist's logo">
+            </a>
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+                {{.Name}}
+            </p>
+            <div class="card__info">
+                <a href="/about/{{ .ID}}"><button class="about-button">About</button></a>
+            </div>
+          </div>
+        </div>
+        {{end}}
+      </section>
+    </div>
+    </main>
+  </body>
+</html>

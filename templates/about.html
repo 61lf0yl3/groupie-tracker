@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/about.css">
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <a href="" class="logo">Groupie-Tracker</a>
+        <div class="header-right">
+            <a href="/" class="link">Home</a>
+            <a href="/search/" class="link">Search</a>
+            <a href="https://groupietrackers.herokuapp.com/api" class="link">API</a>
+            <a href="https://github.com/01-edu/public/blob/master/subjects/groupie-tracker/groupie-tracker.en.md" class="link">About this project</a>
+        </div>
+      </div> 
+    {{$id := .ID}}
+    <div class="container">
+        <img class="artistImage" src="{{.Image}}" alt="Artist's logo">
+       <div class="text">
+        <div class="artistName">{{.Name}}</div>
+        <div class="categoryName">Members:</div>
+            <div>{{ range .Members}}
+                <div>{{ . }}</div>
+                    {{end}}
+            </div>
+        <div class="categoryName">Creation date: </div>
+            <div> {{.CreationDate}} </div>
+        <div class="categoryName">First album: </div>
+            <div>{{.FirstAlbum}}</div>
+    <div class="concerts-container">
+        <div class="categoryName">Concerts: </div>
+        {{range $key, $value := (index .RelationData.Index $id).DatesLocations}}
+        <div class="cities">{{$key}}</div>
+         <div>
+            {{range $value}}
+            <div>{{.}}</div>
+            {{end}}
+         </div>
+        {{end}}
+     </div>
+        </div>
+        <div id="map"></div>
+    </div>
+    <script src="/static/js/map.js"></script>
+</body>
+</html>
